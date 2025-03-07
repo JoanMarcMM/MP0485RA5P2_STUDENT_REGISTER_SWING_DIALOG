@@ -227,7 +227,7 @@ public class AddStudent extends javax.swing.JFrame {
                     valid = false;
                 }
             }
-            if (valid = false) {
+            if (valid == false) {
                 jLblInvalidInfo.setVisible(false);
                 jLblStudentAdded.setVisible(false);
                 jLblDNI.setVisible(true);
@@ -237,6 +237,7 @@ public class AddStudent extends javax.swing.JFrame {
                 //If everything is valid then create student and save it in array, then rewrite file
                 Student student = new Student(name, lastname, age, grade, dni);
                 students.add(student);
+                jTxtAge.remove(this);
                 WriteReadAddOns.writeFile(students);
                 WriteReadAddOns.readFile(students);
                 jLblInvalidInfo.setVisible(false);
@@ -245,6 +246,7 @@ public class AddStudent extends javax.swing.JFrame {
             }
         }
         else{
+            jLblInvalidInfo.setVisible(true);
             jLblInvalidInfo.setVisible(true);
             jLblStudentAdded.setVisible(false);
             jLblDNI.setVisible(false);

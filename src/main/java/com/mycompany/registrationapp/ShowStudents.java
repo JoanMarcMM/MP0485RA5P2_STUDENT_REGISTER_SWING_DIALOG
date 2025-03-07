@@ -46,7 +46,7 @@ public class ShowStudents extends javax.swing.JFrame {
             }
         });
 
-        jBtnLoadList.setText("jButton1");
+        jBtnLoadList.setText("Load List");
         jBtnLoadList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnLoadListActionPerformed(evt);
@@ -101,7 +101,7 @@ public class ShowStudents extends javax.swing.JFrame {
     private void jBtnLoadListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLoadListActionPerformed
         //Read file to get latest info
         WriteReadAddOns.readFile(students);
-
+        StudentList.removeAll();
           
             //For each student on array pring info and add string to list
             for (Student student : students) {
