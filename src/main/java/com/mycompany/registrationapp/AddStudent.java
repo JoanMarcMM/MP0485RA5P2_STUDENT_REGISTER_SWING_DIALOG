@@ -17,7 +17,7 @@ public class AddStudent extends javax.swing.JFrame {
     public AddStudent(ArrayList<Student> students) {
         initComponents();
         this.students = students;
-        jLblInvalidInfo.setVisible(true);
+        jLblInvalidInfo.setVisible(false);
         jLblStudentAdded.setVisible(false);
         jLblDNI.setVisible(false);
 
