@@ -1,7 +1,0 @@
-Joan,Motis,23,2nd,12345r
-Mario,Perez,19,1st,496033V
-a,,2,2nd,adsada
-Porba,add,23,3rd,123
-Porba,add,21,2nd,123
-Porba,add,21,5th,123
-Porba,add,21,5th,1234

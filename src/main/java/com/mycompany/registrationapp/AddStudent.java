@@ -17,7 +17,9 @@ public class AddStudent extends javax.swing.JFrame {
     public AddStudent(ArrayList<Student> students) {
         initComponents();
         this.students = students;
-        
+        jLblInvalidInfo.setVisible(true);
+        jLblStudentAdded.setVisible(false);
+        jLblDNI.setVisible(false);
 
     }
 
@@ -43,6 +45,9 @@ public class AddStudent extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jBtnExit = new javax.swing.JButton();
         jBtnAdd = new javax.swing.JButton();
+        jLblDNI = new javax.swing.JLabel();
+        jLblInvalidInfo = new javax.swing.JLabel();
+        jLblStudentAdded = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,6 +91,15 @@ public class AddStudent extends javax.swing.JFrame {
             }
         });
 
+        jLblDNI.setForeground(new java.awt.Color(255, 0, 0));
+        jLblDNI.setText("DNI not valid, already in use.");
+
+        jLblInvalidInfo.setForeground(new java.awt.Color(255, 0, 0));
+        jLblInvalidInfo.setText("Information not valid.");
+
+        jLblStudentAdded.setForeground(new java.awt.Color(51, 255, 0));
+        jLblStudentAdded.setText("Student added successfully.");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -99,14 +113,6 @@ public class AddStudent extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTxtName, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTxtLastname, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jTxtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createSequentialGroup()
@@ -121,13 +127,28 @@ public class AddStudent extends javax.swing.JFrame {
                                     .addGap(44, 44, 44)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTxtGrade, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap(59, Short.MAX_VALUE))
+                                        .addComponent(jTxtGrade, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTxtName, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTxtLastname, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBtnExit)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                        .addComponent(jLblStudentAdded, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
                         .addComponent(jBtnAdd)
-                        .addGap(36, 36, 36))))
+                        .addGap(36, 36, 36))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLblDNI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(72, 72, 72)
+                        .addComponent(jLblInvalidInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,10 +175,15 @@ public class AddStudent extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTxtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTxtGrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLblDNI)
+                    .addComponent(jLblInvalidInfo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnExit)
-                    .addComponent(jBtnAdd))
+                    .addComponent(jBtnAdd)
+                    .addComponent(jLblStudentAdded))
                 .addGap(18, 18, 18))
         );
 
@@ -202,6 +228,9 @@ public class AddStudent extends javax.swing.JFrame {
                 }
             }
             if (valid = false) {
+                jLblInvalidInfo.setVisible(false);
+                jLblStudentAdded.setVisible(false);
+                jLblDNI.setVisible(true);
 
             } else {
                 
@@ -209,7 +238,16 @@ public class AddStudent extends javax.swing.JFrame {
                 Student student = new Student(name, lastname, age, grade, dni);
                 students.add(student);
                 WriteReadAddOns.writeFile(students);
+                WriteReadAddOns.readFile(students);
+                jLblInvalidInfo.setVisible(false);
+                jLblStudentAdded.setVisible(true);
+                jLblDNI.setVisible(false);
             }
+        }
+        else{
+            jLblInvalidInfo.setVisible(true);
+            jLblStudentAdded.setVisible(false);
+            jLblDNI.setVisible(false);
         }
 
 
@@ -235,6 +273,9 @@ public class AddStudent extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLblDNI;
+    private javax.swing.JLabel jLblInvalidInfo;
+    private javax.swing.JLabel jLblStudentAdded;
     private javax.swing.JTextField jTxtAge;
     private javax.swing.JTextField jTxtDNI;
     private javax.swing.JComboBox<String> jTxtGrade;
