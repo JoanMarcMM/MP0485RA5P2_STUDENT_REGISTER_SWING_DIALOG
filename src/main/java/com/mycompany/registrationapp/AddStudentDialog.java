@@ -203,6 +203,7 @@ public class AddStudentDialog extends javax.swing.JDialog {
                 }
             }
             if (valid == false) {
+                //If not valid show message
                 JOptionPane.showMessageDialog(this, "DNI not valid, already in use.");
 
             } else {
@@ -217,6 +218,7 @@ public class AddStudentDialog extends javax.swing.JDialog {
             }
         }
         else{
+            //If any input is invalid, show message
             JOptionPane.showMessageDialog(this, "Invalid input.");
         }
 

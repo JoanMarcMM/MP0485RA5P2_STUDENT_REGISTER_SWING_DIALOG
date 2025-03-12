@@ -130,21 +130,26 @@ public class DeleteStudentDialog extends javax.swing.JDialog {
         for (Student student : students) {
             if (student.getDni().equalsIgnoreCase(dni)) {
                 found = true;
+                //Sow message student found
                 JOptionPane.showMessageDialog(this, "Student found.");
+                //Ask if sure about deleting
                 int confirmation = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete the student?", "Confirmation", JOptionPane.YES_NO_OPTION);
-
+                //If confirmation is yes , proceed to delete student and show message
                 if (confirmation == JOptionPane.YES_OPTION) {
                     JOptionPane.showMessageDialog(this, "Student deleted.");
                     students.remove(student);
                     break;
                 } else {
+                    //If not, show message
                     JOptionPane.showMessageDialog(this, "Student not deleted.");
                 }
             }
         }
         if (found == false) {
+            //If student not found show message
             JOptionPane.showMessageDialog(this, "Student not found.");
         }
+        //Write file with latest changes
         WriteReadAddOns.writeFile(students);
 
 
