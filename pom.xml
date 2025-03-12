@@ -11,5 +11,5 @@
         <maven.compiler.target>22</maven.compiler.target>
         <exec.mainClass>com.mycompany.registrationapp.StudentRegister</exec.mainClass>
     </properties>
-    <name>RegistrationAppInterface</name>
+    <name>RegistrationAppInterfaceDialog</name>
 </project>

@@ -1,24 +1,27 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package com.mycompany.registrationapp;
-
+import javax.swing.*;
 import java.util.ArrayList;
-
 /**
  *
  * @author jooan
  */
-public class ShowStudentByDNI extends javax.swing.JFrame {
+public class ShowStudentByDNIDialog extends javax.swing.JDialog {
 
-    public ArrayList<Student> students;
-
-    public ShowStudentByDNI(ArrayList<Student> students) {
-        initComponents();
+    private ArrayList<Student> students;
+    
+    public ShowStudentByDNIDialog(java.awt.Frame parent, boolean modal, ArrayList<Student> students) {
+        super(parent, modal);
         this.students = students;
-        
-        jLblNotFound.setVisible(false);
+        initComponents();
+    }
+    
+    public ShowStudentByDNIDialog(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
+        initComponents();
     }
 
     /**
@@ -36,9 +39,8 @@ public class ShowStudentByDNI extends javax.swing.JFrame {
         jTxtDNI = new javax.swing.JTextField();
         jBtnExit = new javax.swing.JButton();
         jBtnSearch = new javax.swing.JButton();
-        jLblNotFound = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("SEARCH STUDENT BY DNI FORM");
@@ -59,9 +61,6 @@ public class ShowStudentByDNI extends javax.swing.JFrame {
             }
         });
 
-        jLblNotFound.setForeground(new java.awt.Color(255, 0, 0));
-        jLblNotFound.setText("Student not found");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -73,8 +72,6 @@ public class ShowStudentByDNI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jBtnExit)
-                .addGap(47, 47, 47)
-                .addComponent(jLblNotFound, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jBtnSearch)
                 .addGap(28, 28, 28))
@@ -106,8 +103,7 @@ public class ShowStudentByDNI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnExit)
-                    .addComponent(jBtnSearch)
-                    .addComponent(jLblNotFound))
+                    .addComponent(jBtnSearch))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -125,17 +121,17 @@ public class ShowStudentByDNI extends javax.swing.JFrame {
     private void jBtnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSearchActionPerformed
         //Clean the list in case of previous search
         StudentList.removeAll();
-        
+
         //Boolean to control if student is found
         boolean found = false;
-        
+
         //Set dni into variable
         String dni = jTxtDNI.getText();
-        
+
         //Run thorugh students and if dni maches show info and sett found true
-         for (Student student : students) {
-             if(student.getDni().equalsIgnoreCase(dni)){
-                 found=true;
+        for (Student student : students) {
+            if(student.getDni().equalsIgnoreCase(dni)){
+                found=true;
                 StudentList.add("----------------------------------------------------");
                 StudentList.add("Name: "+student.getName());
                 StudentList.add("Lastname: "+student.getLastname());
@@ -144,17 +140,56 @@ public class ShowStudentByDNI extends javax.swing.JFrame {
                 StudentList.add("DNI: "+student.getDni());
                 StudentList.add("----------------------------------------------------");
             }
-         }
-         
-         //If not found show message
-         if(found==false){
-             jLblNotFound.setVisible(true);
-         }
-         else{
-             jLblNotFound.setVisible(false);
-         }
+        }
+
+        //If not found show message
+        if(found==false){
+            JOptionPane.showMessageDialog(this, "Student not found.");
+        }
+        
     }//GEN-LAST:event_jBtnSearchActionPerformed
 
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(ShowStudentByDNIDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(ShowStudentByDNIDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(ShowStudentByDNIDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(ShowStudentByDNIDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the dialog */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                ShowStudentByDNIDialog dialog = new ShowStudentByDNIDialog(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.List StudentList;
@@ -162,7 +197,6 @@ public class ShowStudentByDNI extends javax.swing.JFrame {
     private javax.swing.JButton jBtnSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLblNotFound;
     private javax.swing.JTextField jTxtDNI;
     // End of variables declaration//GEN-END:variables
 }

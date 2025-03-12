@@ -1,26 +1,27 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package com.mycompany.registrationapp;
-import com.mycompany.registrationapp.WriteReadAddOns;
+import javax.swing.*;
 import java.util.ArrayList;
-
 /**
  *
  * @author jooan
  */
-public class AddStudent extends javax.swing.JFrame {
+public class AddStudentDialog extends javax.swing.JDialog {
 
-    public ArrayList<Student> students;
-
-    public AddStudent(ArrayList<Student> students) {
-        initComponents();
+    private ArrayList<Student> students;
+    
+    public AddStudentDialog(java.awt.Frame parent, boolean modal, ArrayList<Student> students) {
+        super(parent, modal);
         this.students = students;
-        jLblInvalidInfo.setVisible(false);
-        jLblStudentAdded.setVisible(false);
-        jLblDNI.setVisible(false);
-
+        initComponents();
+    }
+    
+    public AddStudentDialog(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
+        initComponents();
     }
 
     /**
@@ -32,6 +33,11 @@ public class AddStudent extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel5 = new javax.swing.JLabel();
+        jTxtGrade = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
+        jBtnExit = new javax.swing.JButton();
+        jBtnAdd = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jTxtName = new javax.swing.JTextField();
         jTxtAge = new javax.swing.JTextField();
@@ -40,31 +46,8 @@ public class AddStudent extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jTxtDNI = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jTxtGrade = new javax.swing.JComboBox<>();
-        jLabel6 = new javax.swing.JLabel();
-        jBtnExit = new javax.swing.JButton();
-        jBtnAdd = new javax.swing.JButton();
-        jLblDNI = new javax.swing.JLabel();
-        jLblInvalidInfo = new javax.swing.JLabel();
-        jLblStudentAdded = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("ADD STUDENT FORM");
-
-        jTxtAge.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTxtAgeKeyTyped(evt);
-            }
-        });
-
-        jLabel2.setText("Name");
-
-        jLabel3.setText("Last Name");
-
-        jLabel4.setText("Age");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel5.setText("DNI");
 
@@ -91,14 +74,20 @@ public class AddStudent extends javax.swing.JFrame {
             }
         });
 
-        jLblDNI.setForeground(new java.awt.Color(255, 0, 0));
-        jLblDNI.setText("DNI not valid, already in use.");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setText("ADD STUDENT FORM");
 
-        jLblInvalidInfo.setForeground(new java.awt.Color(255, 0, 0));
-        jLblInvalidInfo.setText("Information not valid.");
+        jTxtAge.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTxtAgeKeyTyped(evt);
+            }
+        });
 
-        jLblStudentAdded.setForeground(new java.awt.Color(51, 255, 0));
-        jLblStudentAdded.setText("Student added successfully.");
+        jLabel2.setText("Name");
+
+        jLabel3.setText("Last Name");
+
+        jLabel4.setText("Age");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -136,19 +125,12 @@ public class AddStudent extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTxtLastname, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(65, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBtnExit)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                        .addComponent(jLblStudentAdded, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBtnAdd)
-                        .addGap(36, 36, 36))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLblDNI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(72, 72, 72)
-                        .addComponent(jLblInvalidInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addGap(36, 36, 36))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,15 +157,10 @@ public class AddStudent extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTxtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTxtGrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLblDNI)
-                    .addComponent(jLblInvalidInfo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnExit)
-                    .addComponent(jBtnAdd)
-                    .addComponent(jLblStudentAdded))
+                    .addComponent(jBtnAdd))
                 .addGap(18, 18, 18))
         );
 
@@ -194,7 +171,6 @@ public class AddStudent extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTxtGradeActionPerformed
 
-
     private void jBtnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExitActionPerformed
         Menu menu = new Menu(students);
 
@@ -204,23 +180,22 @@ public class AddStudent extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtnExitActionPerformed
 
     private void jBtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAddActionPerformed
-        
+
         //Read file to get latest info
         WriteReadAddOns.readFile(students);
-        
+
         boolean valid = true;
 
-        
         //Set info into variables
         String name = jTxtName.getText();
         String lastname = jTxtLastname.getText();
         String dni = jTxtDNI.getText();
         int age = Integer.parseInt(jTxtAge.getText());
         String grade = jTxtGrade.getItemAt(jTxtGrade.getSelectedIndex());
-        
+
         //Chech if any info is blank
         if (!name.isBlank() && !lastname.isBlank() && age != 0 && !dni.isBlank() && !grade.isBlank()) {
-            
+
             //Check if DNI is already in use
             for (Student student : students) {
                 if (student.getDni().equalsIgnoreCase(dni)) {
@@ -228,30 +203,22 @@ public class AddStudent extends javax.swing.JFrame {
                 }
             }
             if (valid == false) {
-                jLblInvalidInfo.setVisible(false);
-                jLblStudentAdded.setVisible(false);
-                jLblDNI.setVisible(true);
+                JOptionPane.showMessageDialog(this, "DNI not valid, already in use.");
 
             } else {
-                
+
                 //If everything is valid then create student and save it in array, then rewrite file
                 Student student = new Student(name, lastname, age, grade, dni);
                 students.add(student);
                 jTxtAge.remove(this);
                 WriteReadAddOns.writeFile(students);
                 WriteReadAddOns.readFile(students);
-                jLblInvalidInfo.setVisible(false);
-                jLblStudentAdded.setVisible(true);
-                jLblDNI.setVisible(false);
+                JOptionPane.showMessageDialog(this, "Student added successfully.");
             }
         }
         else{
-            jLblInvalidInfo.setVisible(true);
-            jLblInvalidInfo.setVisible(true);
-            jLblStudentAdded.setVisible(false);
-            jLblDNI.setVisible(false);
+            JOptionPane.showMessageDialog(this, "Invalid input.");
         }
-
 
     }//GEN-LAST:event_jBtnAddActionPerformed
 
@@ -265,6 +232,44 @@ public class AddStudent extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(AddStudentDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(AddStudentDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(AddStudentDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(AddStudentDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the dialog */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                AddStudentDialog dialog = new AddStudentDialog(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnAdd;
@@ -275,9 +280,6 @@ public class AddStudent extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLblDNI;
-    private javax.swing.JLabel jLblInvalidInfo;
-    private javax.swing.JLabel jLblStudentAdded;
     private javax.swing.JTextField jTxtAge;
     private javax.swing.JTextField jTxtDNI;
     private javax.swing.JComboBox<String> jTxtGrade;

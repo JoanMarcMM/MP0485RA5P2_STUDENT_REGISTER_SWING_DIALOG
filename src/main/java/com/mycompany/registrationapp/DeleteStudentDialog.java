@@ -1,24 +1,29 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package com.mycompany.registrationapp;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author jooan
  */
-public class DeleteStudent extends javax.swing.JFrame {
+public class DeleteStudentDialog extends javax.swing.JDialog {
 
-    public ArrayList<Student> students;
-    
-    public DeleteStudent(ArrayList <Student> students) {
-        initComponents();
+    private ArrayList<Student> students;
+
+    public DeleteStudentDialog(java.awt.Frame parent, boolean modal, ArrayList<Student> students) {
+        super(parent, modal);
         this.students = students;
-        jLblNotFound.setVisible(false);
-        jLblFound.setVisible(false);
+        initComponents();
+    }
+
+    public DeleteStudentDialog(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
+        initComponents();
     }
 
     /**
@@ -30,18 +35,13 @@ public class DeleteStudent extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
         jTxtDNI = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jBtnExit = new javax.swing.JButton();
         jBtnDelete = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jLblNotFound = new javax.swing.JLabel();
-        jLblFound = new javax.swing.JLabel();
 
-        jLabel2.setText("jLabel2");
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTxtDNI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,12 +68,6 @@ public class DeleteStudent extends javax.swing.JFrame {
 
         jLabel3.setText("Student DNI");
 
-        jLblNotFound.setForeground(new java.awt.Color(255, 0, 0));
-        jLblNotFound.setText("Student not found");
-
-        jLblFound.setForeground(new java.awt.Color(0, 255, 0));
-        jLblFound.setText("Student deleted successfuly");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -89,9 +83,6 @@ public class DeleteStudent extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jLblFound, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-                        .addComponent(jLblNotFound, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jTxtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
@@ -103,11 +94,7 @@ public class DeleteStudent extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTxtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLblNotFound)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLblFound)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnExit)
                     .addComponent(jBtnDelete))
@@ -130,47 +117,86 @@ public class DeleteStudent extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtnExitActionPerformed
 
     private void jBtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnDeleteActionPerformed
+
         //Read file to get latest info
         WriteReadAddOns.readFile(students);
-        
+
         boolean found = false;
 
-        
         //Set info into variables
         String dni = jTxtDNI.getText();
-       
-            
-            //Find Student , delete if found. 
-            for (Student student : students) {
-                if (student.getDni().equalsIgnoreCase(dni)) {
-                    found = true;
+
+        //Find Student , delete if found.
+        for (Student student : students) {
+            if (student.getDni().equalsIgnoreCase(dni)) {
+                found = true;
+                JOptionPane.showMessageDialog(this, "Student found.");
+                int confirmation = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete the student?", "Confirmation", JOptionPane.YES_NO_OPTION);
+
+                if (confirmation == JOptionPane.YES_OPTION) {
+                    JOptionPane.showMessageDialog(this, "Student deleted.");
                     students.remove(student);
+                    break;
+                } else {
+                    JOptionPane.showMessageDialog(this, "Student not deleted.");
+                }
+            }
+        }
+        if (found == false) {
+            JOptionPane.showMessageDialog(this, "Student not found.");
+        }
+        WriteReadAddOns.writeFile(students);
+
+
+    }//GEN-LAST:event_jBtnDeleteActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-            
-            WriteReadAddOns.writeFile(students);
-            
-            //If found show one message, if not show the other
-            if (found == false){
-                jLblNotFound.setVisible(true);
-                jLblFound.setVisible(false);
-            }else{
-                jLblFound.setVisible(true);
-                jLblNotFound.setVisible(false);
-            }
-        
-    }//GEN-LAST:event_jBtnDeleteActionPerformed
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(DeleteStudentDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(DeleteStudentDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(DeleteStudentDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(DeleteStudentDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
 
+        /* Create and display the dialog */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                DeleteStudentDialog dialog = new DeleteStudentDialog(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnDelete;
     private javax.swing.JButton jBtnExit;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLblFound;
-    private javax.swing.JLabel jLblNotFound;
     private javax.swing.JTextField jTxtDNI;
     // End of variables declaration//GEN-END:variables
 }

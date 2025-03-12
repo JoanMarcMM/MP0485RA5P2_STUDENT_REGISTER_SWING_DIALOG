@@ -48,7 +48,7 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel3.setText("By : Joan Marc Martínez Motis");
 
-        jBtnAddStudent.setText("Add Student");
+        jBtnAddStudent.setLabel("Add Student");
         jBtnAddStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnAddStudentActionPerformed(evt);
@@ -142,36 +142,34 @@ public class Menu extends javax.swing.JFrame {
 //Sends to AddStudent frame
     private void jBtnAddStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAddStudentActionPerformed
      
-      AddStudent addStudent = new AddStudent (students);
-        
-      addStudent.setVisible(true);
-     
-      this.setVisible(false);
+      AddStudentDialog addStudentDialog = new AddStudentDialog(this, true,students);
+      addStudentDialog.setLocationRelativeTo(this);
+      addStudentDialog.setVisible(true);
     }//GEN-LAST:event_jBtnAddStudentActionPerformed
 
 //Sends to ShowAllStudents frame
     private void jBtnShowStudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnShowStudentsActionPerformed
-      ShowStudents showStudents = new ShowStudents(students);
-        
-      showStudents.setVisible(true);
+      ShowStudentsDialog showStudentsDialog = new ShowStudentsDialog(this, true,students);
+      showStudentsDialog.setLocationRelativeTo(this);
+      showStudentsDialog.setVisible(true);
      
       this.setVisible(false);
     }//GEN-LAST:event_jBtnShowStudentsActionPerformed
 
 //Sends to DeleteStudent frame
     private void jBtnDeleteStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnDeleteStudentActionPerformed
-      DeleteStudent deleteStudent = new DeleteStudent(students);
-        
-      deleteStudent.setVisible(true);
+      DeleteStudentDialog deleteStudentDialog = new DeleteStudentDialog(this, true,students);
+      deleteStudentDialog.setLocationRelativeTo(this);
+      deleteStudentDialog.setVisible(true);
      
       this.setVisible(false);
     }//GEN-LAST:event_jBtnDeleteStudentActionPerformed
 
 //Sends to ShowStudentByDNI frame
     private void jBtnShowStudentByDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnShowStudentByDNIActionPerformed
-      ShowStudentByDNI showStudentByDni = new ShowStudentByDNI (students);
-        
-      showStudentByDni.setVisible(true);
+      ShowStudentByDNIDialog showStudentByDniDialog = new ShowStudentByDNIDialog (this, true,students);
+      showStudentByDniDialog.setLocationRelativeTo(this);
+      showStudentByDniDialog.setVisible(true);
      
       this.setVisible(false);
     }//GEN-LAST:event_jBtnShowStudentByDNIActionPerformed
